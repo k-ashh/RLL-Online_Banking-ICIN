@@ -1,0 +1,71 @@
+CREATE TABLE `account` (
+  `id` int NOT NULL,
+  `accno` bigint NOT NULL,
+  `balance` int NOT NULL,
+  `username` varchar(255) DEFAULT NULL,
+  `user_id` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK7m8ru44m93ukyb61dfxw0apf6` (`user_id`),
+  CONSTRAINT `FK7m8ru44m93ukyb61dfxw0apf6` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `chequebook_request` (
+  `id` int NOT NULL,
+  `acc_type` varchar(255) DEFAULT NULL,
+  `account` bigint NOT NULL,
+  `date` date DEFAULT NULL,
+  `no_of_pages` int NOT NULL,
+  `request_status` bit(1) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `hibernate_sequence` (
+  `next_val` bigint DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `saccount` (
+  `id` int NOT NULL,
+  `accno` bigint NOT NULL,
+  `balance` int NOT NULL,
+  `username` varchar(255) DEFAULT NULL,
+  `user_id` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKdkl8v9olbo2a3jg4u56rv57i2` (`user_id`),
+  CONSTRAINT `FKdkl8v9olbo2a3jg4u56rv57i2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `transfer` (
+  `id` int NOT NULL,
+  `amount` int NOT NULL,
+  `date` date DEFAULT NULL,
+  `raccount` bigint NOT NULL,
+  `saccount` bigint NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `user` (
+  `id` int NOT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `authorization_status` tinyint(1) DEFAULT '0',
+  `dob` date DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `feature_status` int NOT NULL DEFAULT '3',
+  `fname` varchar(255) DEFAULT NULL,
+  `identity` varchar(255) DEFAULT NULL,
+  `identity_type` varchar(255) DEFAULT NULL,
+  `lname` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `phone` bigint NOT NULL,
+  `status` tinyint(1) DEFAULT '0',
+  `username` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `user_history` (
+  `id` int NOT NULL,
+  `account` bigint NOT NULL,
+  `action` varchar(255) DEFAULT NULL,
+  `amount` int NOT NULL,
+  `date` date DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
